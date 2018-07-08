@@ -1,31 +1,53 @@
-
-�or create a new repository on the command line
-echo "# commandlinepractice" >> README.md
+﻿Cách sử dụng github command line từ đầu đến cuối
+--------------------------------------------------------------------------------------------------------------------------------------------
+1.Đầu tiên phải khởi tạo folder .git để cấu hình git local
 git init
-git add README.md
-git commit -m "first commit"
+
+2.Get source về bằng cách remote đến server của git thông qua url http hoặc ssh, thường thì sử dụng http thì cần đăng nhập account với pass, nếu dùng ssh phải qua bước tạo fingerkey và add vào profile trên website Github
 git remote add origin https://github.com/minhphuongitech/commandlinepractice.git
-git push -u origin master
 
-�or push an existing repository from the command line
-git remote add origin https://github.com/minhphuongitech/commandlinepractice.git
-git push -u origin master
+3.Thêm một file nào đó vào thư mục rồi dùng lệnh add vào git để track sự thay đổi của nó ví dụ file guild.txt
+git add "guild.txt"
 
-
-�or import code from another repository
-You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
-
-
-Khoi tao
-git init
-git add readme.txt
+4.cần phải commit trước khi push code lên server, bắt buộc phải thêm message để người khác biết mình đã làm gì
 git commit -m "first commit"
-git remote add origin https://
+
+4.Đưa code lên server nhánh master bằng lệnh push 
 git push -u origin master
 
-git remote add https://
-git push -u origin master
+5.Hoành thành việc lấy source, đưa file lên server
 
-abc
+Trường hợp khác:
+1.Tạo branch features-20180708 mới hoành toàn
+git checkout -b "features-20180708"
 
-abcdef
+2.switch qua branch đã tồn tại
+git checkout "master"
+
+3.kiểm tra trạng thái git ở local như thế nào? có thay đổi gì không,...
+git status
+
+4.xem log để biết ai đã lại git trên server? push code....
+
+5.liệt kê hiện tại có những branch nào trên server
+git branch
+
+6.backup data(stash) trước khi pull từ server về
+git stash save "back du lieu"    (backup với từ khóa save thì có thể lưu tên, nếu backup ko lưu tên thì chỉ cần git stash là ok)
+
+7.xem danh sách có những stash nào đã được lưu để chọn và apply vào
+git stash list
+
+8.apply stash vào branch, chọn giá trị 0,1 hoặc là 2... tương ứng với stash đã được lưu
+git stash apply 0
+
+9.delete stash đã được backup trước đó cho value 0,1 hay 2,.. tương ứng stash muốn xóa (git stash list để xem thứ tự)
+git stash drop 0
+
+10.xóa hết tất cả các stash hiện có
+git stash clear (nên cẩn thận lệnh này vì mất hết data đã lưu)
+
+11.Merge một nhánh nào đó vào master (ví dụ nhánh features-20180708)
+	- Chuyển branh qua master trước 			: git checkout master
+	- Dùng lệnh merge branch features vào master 		: git merge features-20180708
+	- Merge xong phải push lên server			: git push
